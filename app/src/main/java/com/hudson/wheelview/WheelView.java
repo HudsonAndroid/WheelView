@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import com.hudson.wheelview.adapter.WheelViewAdapter;
 import com.hudson.wheelview.adapter.WheelViewConfig;
@@ -71,5 +72,14 @@ public class WheelView extends RecyclerView {
             int top = mFirstLineTop + mConfig.getItemHeight();
             canvas.drawLine(offset,top, width - offset,top,mLinePaint);
         }
+    }
+
+    public void setSelection(int position){
+        if(mConfig == null){
+            Log.w("WheelView","You should set wheel view adapter before you do it");
+            return ;
+        }
+        //scroll to target position and fit the top
+        mLayoutManager.scrollToPositionWithOffset(position - mConfig.getPageCount()/2,0);
     }
 }

@@ -5,7 +5,10 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 
 import com.hudson.wheelview.adapter.WheelViewAdapter;
 import com.hudson.wheelview.adapter.WheelViewConfig;
@@ -16,11 +19,16 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private WheelView mWheelView;
+    private EditText mEditText;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        WheelView wheelView = (WheelView) findViewById(R.id.wv_first);
+        mWheelView = (WheelView) findViewById(R.id.wv_first);
+        mEditText = (EditText) findViewById(R.id.et_selection);
         //config the wheel view
         WheelViewConfig config = new WheelViewConfig();
         config.setItemHeight((int) getResources().getDimension(R.dimen.height_item_view))
@@ -34,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 100; i++) {
             datas.add("我是第" + i + "个数据");
         }
-        wheelView.setWheelViewAdapter(adapter);
+        mWheelView.setWheelViewAdapter(adapter);
         adapter.refreshList(datas);
         adapter.setOnItemClickListener(new OnItemClickListener<String>() {
             @Override
@@ -42,10 +50,18 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("MainActivity","you just click the item:"+item+",position"+position);
             }
         });
+        mWheelView.setSelection(20);
     }
 
     public static int dip2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
+    }
+
+    public void selectItem(View view) {
+        String text = mEditText.getText().toString();
+        if(!TextUtils.isEmpty(text)){
+            mWheelView.setSelection(Integer.valueOf(text));
+        }
     }
 }

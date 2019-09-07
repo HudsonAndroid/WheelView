@@ -16,4 +16,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <EditText
+        android:id="@+id/et_selection"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:inputType="number"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:text="选中"
+        android:onClick="selectItem"
+        app:layout_constraintLeft_toRightOf="@id/et_selection"
+        app:layout_constraintBottom_toBottomOf="@id/et_selection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
 </android.support.constraint.ConstraintLayout>
