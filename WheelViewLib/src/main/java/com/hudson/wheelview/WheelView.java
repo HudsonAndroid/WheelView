@@ -18,7 +18,7 @@ import com.hudson.wheelview.listener.OnSelectChangedListener;
 /**
  * Created by hudson on 2019/9/6.
  */
-public class WheelView extends RecyclerView {
+public class WheelView extends RecyclerView implements WheelViewAdapter.OnDataListChangeListener {
     private WheelViewConfig mConfig;
     private FixFirstViewLayoutManager mLayoutManager;
     private int mFirstLineTop = -1;
@@ -41,13 +41,14 @@ public class WheelView extends RecyclerView {
         addOnScrollListener(new OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                mLayoutManager.focusCenterView();
+                mLayoutManager.focusCenterView(false);
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
     }
 
     public void setWheelViewAdapter(WheelViewAdapter adapter) {
+        adapter.setOnDataListChangeListener(this);
         mConfig = adapter.getConfig();
         setAdapter(adapter);
         ViewGroup.LayoutParams layoutParams = getLayoutParams();
@@ -121,5 +122,10 @@ public class WheelView extends RecyclerView {
 
     public void setOnSelectChangedListener(OnSelectChangedListener listener){
         mLayoutManager.setSelectChangedListener(listener);
+    }
+
+    @Override
+    public void onDataListChange() {
+        mLayoutManager.focusCenterView(true);
     }
 }

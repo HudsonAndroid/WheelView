@@ -23,6 +23,7 @@ public class WheelViewAdapter<T> extends RecyclerView.Adapter<ItemViewHolder<T>>
     private final List<T> mDatas = new ArrayList<>();
     private final WheelViewConfig mWheelViewConfig;// non null
     private OnItemClickListener<T> mOnItemClickListener;
+    private OnDataListChangeListener mDataListChangeListener;
 
     public WheelViewAdapter() {
         this(new WheelViewConfig());
@@ -40,6 +41,9 @@ public class WheelViewAdapter<T> extends RecyclerView.Adapter<ItemViewHolder<T>>
         mDatas.clear();
         mDatas.addAll(datas);
         notifyDataSetChanged();
+        if(mDataListChangeListener != null){
+            mDataListChangeListener.onDataListChange();
+        }
     }
 
     @Override
@@ -98,5 +102,13 @@ public class WheelViewAdapter<T> extends RecyclerView.Adapter<ItemViewHolder<T>>
 
     public WheelViewConfig getConfig(){
         return mWheelViewConfig;
+    }
+
+    public interface OnDataListChangeListener{
+        void onDataListChange();
+    }
+
+    public void setOnDataListChangeListener(OnDataListChangeListener listener) {
+        mDataListChangeListener = listener;
     }
 }

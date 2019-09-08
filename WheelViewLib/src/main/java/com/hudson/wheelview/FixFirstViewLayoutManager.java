@@ -65,25 +65,28 @@ public class FixFirstViewLayoutManager extends LinearLayoutManager {
         }
     }
 
-    void focusCenterView(){
+    void focusCenterView(boolean force){
         WheelViewConfig config = mWheelView.getConfig();
         if(config == null){
             return ;
         }
-        if(mLastCenter != null){
-            mLastCenter.setTextColor(config.getTextColor());
-        }
         int centerViewPosition = getCenterViewPosition(config);
         if(centerViewPosition > 0){
-            if(mSelectChangedListener != null && mFocusPosition != (centerViewPosition - 1)){
-                mSelectChangedListener.onSelectChanged(centerViewPosition - 1);
-            }
+            int beforePosition = mFocusPosition;
             mFocusPosition = centerViewPosition - 1;
-        }
-        View view = findViewByPosition(centerViewPosition);
-        if(view != null){
-            mLastCenter = ((TextView)view);
-            mLastCenter.setTextColor(config.getFocusColor());
+            if(beforePosition != (centerViewPosition - 1) || force){
+                if(mSelectChangedListener != null){
+                    mSelectChangedListener.onSelectChanged(mFocusPosition);
+                }
+                View view = findViewByPosition(centerViewPosition);
+                if(view != null){
+                    if(mLastCenter != null){
+                        mLastCenter.setTextColor(config.getTextColor());
+                    }
+                    mLastCenter = ((TextView)view);
+                    mLastCenter.setTextColor(config.getFocusColor());
+                }
+            }
         }
     }
 
