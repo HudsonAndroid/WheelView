@@ -134,4 +134,11 @@ public class FixFirstViewLayoutManager extends LinearLayoutManager {
     public void setSelectChangedListener(@NonNull OnSelectChangedListener selectChangedListener) {
         mSelectChangedListener = selectChangedListener;
     }
+
+    @Override
+    public void onLayoutCompleted(RecyclerView.State state) {
+        super.onLayoutCompleted(state);
+        // after list layout complete,we focus the center view
+        focusCenterView(true);
+    }
 }
