@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.ViewGroup;
 
 import com.hudson.wheelview.adapter.WheelViewAdapter;
 import com.hudson.wheelview.adapter.WheelViewConfig;
@@ -49,12 +50,23 @@ public class WheelView extends RecyclerView {
     public void setWheelViewAdapter(WheelViewAdapter adapter) {
         mConfig = adapter.getConfig();
         setAdapter(adapter);
-        getLayoutParams().height = mConfig.getItemHeight() * mConfig.getPageCount();
+        ViewGroup.LayoutParams layoutParams = getLayoutParams();
+        if(layoutParams != null){
+            layoutParams.height = mConfig.getItemHeight() * mConfig.getPageCount();
+        }
         mFirstLineTop = mConfig.getPageCount() / 2 * mConfig.getItemHeight();
         //config paint line
         mLinePaint.setColor(mConfig.getFocusColor());
         mLinePaint.setStrokeWidth(mConfig.getCenterLineWidth());
         mLinePaint.setStrokeCap(Paint.Cap.ROUND);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if(mConfig != null){
+            getLayoutParams().height = mConfig.getItemHeight() * mConfig.getPageCount();
+        }
     }
 
     @Nullable
