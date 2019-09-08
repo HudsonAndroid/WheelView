@@ -1,2 +1,2 @@
-include ':app'
+include ':WheelViewLib'
 rootProject.name='WheelView'
