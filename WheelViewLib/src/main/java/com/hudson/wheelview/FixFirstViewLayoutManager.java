@@ -75,10 +75,10 @@ public class FixFirstViewLayoutManager extends LinearLayoutManager {
         }
         int centerViewPosition = getCenterViewPosition(config);
         if(centerViewPosition > 0){
-            mFocusPosition = centerViewPosition - 1;
             if(mSelectChangedListener != null && mFocusPosition != (centerViewPosition - 1)){
-                mSelectChangedListener.onSelectChanged(mFocusPosition);
+                mSelectChangedListener.onSelectChanged(centerViewPosition - 1);
             }
+            mFocusPosition = centerViewPosition - 1;
         }
         View view = findViewByPosition(centerViewPosition);
         if(view != null){
