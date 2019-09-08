@@ -36,6 +36,16 @@
         // T must implement the method Object.toString()
         // WheelViewAdapter<T> adapter = new WheelViewAdapter<>();
         WheelViewAdapter<String> adapter = new WheelViewAdapter<>(config);
+#### 属性说明：
+        setItemHeight 设置每个item的高度  px
+        setFocusColor 设置居中（选中）item的颜色，包括了文本和两根线条的颜色
+        setCenterLineWidth 设置中央两条线条的stroke宽度  px
+        setLinePercentage  设置中央两条线条的横轴的长度占据WheelView的百分比
+        setTextColor  设置普通item的文本的颜色
+        setTextSize   设置item的文本大小  sp
+        setShowPaddingView   设置是否显示顶部和底部的paddingView，默认显示，这样头尾item便可以居中显示
+        setPageCount  设置一次性显示的item个数
+        
 ### 3.设置adapter，展示数据
       //... wheelView findViewById
       mWheelView.setWheelViewAdapter(adapter);
