@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             .setFocusColor(Color.parseColor("#328FFE"))
             .setCenterLineWidth(3)
             .setLinePercentage(0.8f)
+//            .setShowPaddingView(false)
             .setPageCount(9);
 
         WheelViewAdapter<String> adapter = new WheelViewAdapter<>(config);
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new OnItemClickListener<String>() {
             @Override
             public void onItemClick(String item,int position) {
-                Log.e("MainActivity","you just click the item:"+item+",position"+position);
+                Log.e("MainActivity","you just click the item:"+item+",position "+position);
             }
         });
         mWheelView.setSelection(20);

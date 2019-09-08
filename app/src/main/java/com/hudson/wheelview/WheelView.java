@@ -79,7 +79,30 @@ public class WheelView extends RecyclerView {
             Log.w("WheelView","You should set wheel view adapter before you do it");
             return ;
         }
+        int halfCount = mConfig.getPageCount() / 2;
+        int size = 0;
+        Adapter adapter = getAdapter();
+        if(adapter != null){
+            size = adapter.getItemCount() - 2;//top + bottom
+        }
+        if((position < halfCount || position >= (size - halfCount)) && !mConfig.isShowPaddingView()){
+            Log.w("WheelView","Sorry,wheel view cannot select the position in this state," +
+                    "you can only select the position from "+halfCount + " to "+(size - halfCount - 1));
+        }
+
         //scroll to target position and fit the top
-        mLayoutManager.scrollToPositionWithOffset(position - mConfig.getPageCount()/2,0);
+        if(position < halfCount && mConfig.isShowPaddingView()){
+            mLayoutManager.scrollToPositionWithOffset(0,-position * mConfig.getItemHeight());
+        }else{
+            mLayoutManager.scrollToPositionWithOffset(position - halfCount + 1,0);
+        }
+    }
+
+    /**
+     * get the select view's position
+     * @return position
+     */
+    public int getSelection(){
+        return mLayoutManager.getFocusPosition();
     }
 }

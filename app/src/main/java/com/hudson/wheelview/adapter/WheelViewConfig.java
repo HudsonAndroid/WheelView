@@ -13,6 +13,7 @@ public class WheelViewConfig {
     private static final float DEFAULT_LINE_PERCENTAGE = 0.6f;//default center line percentage
     private static final int DEFAULT_FOCUS_COLOR = Color.RED;
     private static final float DEFAULT_CENTER_LINE_WIDTH = 3;//px
+    private static final boolean DEFAULT_FLAG_PADDING_SHOW = true;//show the head and bottom empty view
 
     private int mItemHeight = DEFAULT_ITEM_HEIGHT;
     private int mTextColor = DEFAULT_TEXT_COLOR;
@@ -21,6 +22,7 @@ public class WheelViewConfig {
     private float mLinePercentage = DEFAULT_LINE_PERCENTAGE;
     private int mFocusColor = DEFAULT_FOCUS_COLOR;
     private float mCenterLineWidth = DEFAULT_CENTER_LINE_WIDTH;
+    private boolean isShowPaddingView = DEFAULT_FLAG_PADDING_SHOW;
 
     public WheelViewConfig setItemHeight(int itemHeight) {
         if(itemHeight > 0){
@@ -77,6 +79,15 @@ public class WheelViewConfig {
     public WheelViewConfig setFocusColor(int focusColor) {
         mFocusColor = focusColor;
         return this;
+    }
+
+    public WheelViewConfig setShowPaddingView(boolean showPaddingView) {
+        isShowPaddingView = showPaddingView;
+        return this;
+    }
+
+    public boolean isShowPaddingView() {
+        return isShowPaddingView;
     }
 
     public float getCenterLineWidth() {
