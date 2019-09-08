@@ -1,7 +1,7 @@
 # WheelView
 基于RecyclerView构建的滚轮选择器控件。
 ## 示例
-    <img width="511" height="379" src="https://github.com/HudsonAndroid/WheelView/raw/master/images/display1.jpg"/> <img width="511" height="379" src="https://github.com/HudsonAndroid/WheelView/raw/master/images/display2.jpg"/> <img width="511" height="379" src="https://github.com/HudsonAndroid/WheelView/raw/master/images/display3.jpg"/>
+<img width="320" height="237" src="https://github.com/HudsonAndroid/WheelView/raw/master/images/display1.jpg"/> <img width="320" height="237" src="https://github.com/HudsonAndroid/WheelView/raw/master/images/display2.jpg"/> <img width="320" height="237" src="https://github.com/HudsonAndroid/WheelView/raw/master/images/display3.jpg"/>
 ## Usage
 
 ### 1.在布局文件中声明控件
