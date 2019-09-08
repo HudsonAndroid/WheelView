@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hudson.wheelview.adapter.WheelViewConfig;
+import com.hudson.wheelview.listener.OnSelectChangedListener;
 
 
 /**
@@ -20,6 +21,7 @@ public class FixFirstViewLayoutManager extends LinearLayoutManager {
     private WheelView mWheelView;
     private TextView mLastCenter;
     private int mFocusPosition = 0;//maybe it's not right
+    private OnSelectChangedListener mSelectChangedListener;
 
     FixFirstViewLayoutManager(Context context, WheelView wheelView) {
         super(context);
@@ -74,6 +76,9 @@ public class FixFirstViewLayoutManager extends LinearLayoutManager {
         int centerViewPosition = getCenterViewPosition(config);
         if(centerViewPosition > 0){
             mFocusPosition = centerViewPosition - 1;
+            if(mSelectChangedListener != null && mFocusPosition != (centerViewPosition - 1)){
+                mSelectChangedListener.onSelectChanged(mFocusPosition);
+            }
         }
         View view = findViewByPosition(centerViewPosition);
         if(view != null){
@@ -121,5 +126,9 @@ public class FixFirstViewLayoutManager extends LinearLayoutManager {
             }
         }
         return mFocusPosition;
+    }
+
+    public void setSelectChangedListener(@NonNull OnSelectChangedListener selectChangedListener) {
+        mSelectChangedListener = selectChangedListener;
     }
 }

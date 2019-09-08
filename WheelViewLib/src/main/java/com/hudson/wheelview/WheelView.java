@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.hudson.wheelview.adapter.WheelViewAdapter;
 import com.hudson.wheelview.adapter.WheelViewConfig;
+import com.hudson.wheelview.listener.OnSelectChangedListener;
 
 
 /**
@@ -104,5 +105,9 @@ public class WheelView extends RecyclerView {
      */
     public int getSelection(){
         return mLayoutManager.getFocusPosition();
+    }
+
+    public void setOnSelectChangedListener(OnSelectChangedListener listener){
+        mLayoutManager.setSelectChangedListener(listener);
     }
 }
