@@ -2,6 +2,12 @@
 基于RecyclerView构建的滚轮选择器控件。
 ## 示例
 <img width="320" height="237" src="https://github.com/HudsonAndroid/WheelView/raw/master/images/display1.jpg"/> <img width="320" height="237" src="https://github.com/HudsonAndroid/WheelView/raw/master/images/display2.jpg"/> <img width="320" height="237" src="https://github.com/HudsonAndroid/WheelView/raw/master/images/display3.jpg"/>
+
+## Dependency
+##### 1.add repositories in your project root file build.gradle:
+       maven { url 'https://jitpack.io' }
+##### 2.add implementation in your module file build.gradle dependencies node:
+       implementation 'com.github.HudsonAndroid:WheelView:1.0.0'
 ## Usage
 
 ### 1.在布局文件中声明控件
