@@ -38,22 +38,26 @@ public class FixFirstViewLayoutManager extends LinearLayoutManager {
     @Override
     public void onScrollStateChanged(int state) {
         if (state == RecyclerView.SCROLL_STATE_IDLE) {
-            int position = findFirstVisibleItemPosition();
-            View view = findViewByPosition(position);
-            if(view != null){
-                int top = view.getTop();
-                int bottom = view.getBottom();
-                int distanceY;
-                WheelViewConfig config = mWheelView.getConfig();
-                // if show top and bottom empty view,we should scroll in another way.
-                if(position == 0 && config != null && config.isShowPaddingView()){
-                    int itemHeight = config.getItemHeight();
-                    top = top % itemHeight;
-                    bottom = itemHeight + top;
-                }
-                distanceY = getScrollDistance(top,bottom);
-                mWheelView.smoothScrollBy(0, distanceY);
+            scrollToCenterPosition();
+        }
+    }
+
+    void scrollToCenterPosition() {
+        int position = findFirstVisibleItemPosition();
+        View view = findViewByPosition(position);
+        if(view != null){
+            int top = view.getTop();
+            int bottom = view.getBottom();
+            int distanceY;
+            WheelViewConfig config = mWheelView.getConfig();
+            // if show top and bottom empty view,we should scroll in another way.
+            if(position == 0 && config != null && config.isShowPaddingView()){
+                int itemHeight = config.getItemHeight();
+                top = top % itemHeight;
+                bottom = itemHeight + top;
             }
+            distanceY = getScrollDistance(top,bottom);
+            mWheelView.smoothScrollBy(0, distanceY);
         }
     }
 

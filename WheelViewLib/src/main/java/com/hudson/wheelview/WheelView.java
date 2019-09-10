@@ -67,6 +67,8 @@ public class WheelView extends RecyclerView {
         if(mConfig != null){
             getLayoutParams().height = mConfig.getItemHeight() * mConfig.getPageCount();
         }
+        //make sure view attach again scroll position is right (sometimes view detach from window,scroll position is not right)
+        mLayoutManager.scrollToCenterPosition();
     }
 
     @Nullable
