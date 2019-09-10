@@ -7,7 +7,7 @@
 ##### 1.add repositories in your project root file build.gradle:
        maven { url 'https://jitpack.io' }
 ##### 2.add implementation in your module file build.gradle dependencies node:
-       implementation 'com.github.HudsonAndroid:WheelView:1.0.0'
+       implementation 'com.github.HudsonAndroid:WheelView:1.0.1'
 ## Usage
 
 ### 1.在布局文件中声明控件
