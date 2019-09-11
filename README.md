@@ -59,7 +59,9 @@
 ### 4.选中某个item和获取选中
        mWheelView.setSelection(20);//select 20
        mWheelView.getSelection();//get selection
-### 5.附加-item的点击监听（可能作用不大）
+### 5.添加选中更改监听器
+       setOnSelectChangedListener(OnSelectChangedListener listener);
+### 6.附加-item的点击监听（可能作用不大）
          adapter.setOnItemClickListener(new OnItemClickListener<T>() {
             @Override
             public void onItemClick(T item,int position) {
